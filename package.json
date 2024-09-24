@@ -1,0 +1,35 @@
+{
+  "name": "loggable-error",
+  "version": "1.0.0",
+  "description": "Stringifies errors into a format similar to console.log",
+  "main": "./src/main.cjs",
+  "exports": {
+    "import": "./src/import.mjs",
+    "require": "./src/main.cjs"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "mocha ./tests/*.test.*js"
+  },
+  "author": "Evan Kaufman <evan@evanskaufman.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvanK/npm-loggable-error.git"
+  },
+  "keywords": [
+    "error",
+    "exception",
+    "log",
+    "loggable",
+    "stringify"
+  ],
+  "bugs": {
+    "url": "https://github.com/EvanK/npm-loggable-error/issues"
+  },
+  "homepage": "https://github.com/EvanK/npm-loggable-error#readme"
+}
