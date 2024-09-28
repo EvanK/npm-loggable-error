@@ -1,5 +1,7 @@
 # loggable-error
 
+![ci status](https://github.com/EvanK/npm-loggable-error/actions/workflows/ci.yml/badge.svg)
+
 In those times when you need to log an error to somewhere other than standard output, this simple module stringifies Error objects in a format akin to `console.log`:
 
 ```js
