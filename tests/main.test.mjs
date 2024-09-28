@@ -3,6 +3,8 @@ const { assert } = chai;
 
 import stringify from '../src/import.mjs';
 
+import packageJson from '../package.json' assert { type: 'json' };
+
 describe('stringify', function() {
 
   it('Stringifies standard error with cause', function() {
@@ -128,6 +130,36 @@ describe('stringify', function() {
     assert.match(
       result,
       /^Error: catch and rethrow(\n    at [^\)]+\))+ \{\n  \[cause\]: Error: root cause(\n      at [^\)]+\))+\n}\n$/
+    );
+  });
+
+  it('Depth option changes indent level', function () {
+    const err = new Error('simple');
+    const result = stringify(err, { depth: 10 });
+
+    assert.isTrue(
+      result.startsWith(
+        `Error: simple
+              at Context.<anonymous> (`
+      ),
+      'startsWith failed'
+    );
+  });
+
+  it('Stack option disables stack traces', function () {
+    const err = new Error('simple', { cause: new Error('but not too simple') });
+    const result = stringify(err, { stack: false });
+
+    assert.equal(result, `Error: simple {
+  [cause]: Error: but not too simple
+}
+`);
+  });
+
+  it('Versions match', function () {
+    assert.include(
+      packageJson,
+      { name: 'loggable-error', version: stringify.version }
     );
   });
 

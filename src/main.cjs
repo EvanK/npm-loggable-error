@@ -1,22 +1,35 @@
+const packageJson = require('../package.json');
+
 /**
  * Converts any Error instance to a string format similar to what console.log generates.
  * Any other value will be cast to string.
  * 
  * @param {*} err The error to stringify
- * @param {number} depth For recursive calls on nested error objects, controls indentation
- * @returns {string}
+ * @param {object} [options]
+ * @param {number} [options.depth=0] Controls indentation of stack traces, properties and nested errors
+ * @param {boolean} [options.stack=true] Controls stack traces, displayed by default
+ * @returns {string} The stringified error
+ * @property {string} version
  */
-module.exports = function stringify (err, depth = 0) {
+function stringify(err, options = {}) {
+  const depth = options.hasOwnProperty('depth') ? parseInt(options.depth, 10) : 0;
+  const stack = options.hasOwnProperty('stack') ? (!!options.stack) : true;
+
   let collapsed = '';
   if (err instanceof Error) {
-    // add full stack trace if one exists, otherwise convert to string
-    let stack = ( err?.stack ?? err.toString() ).replace(/^/gm, ' '.repeat(depth)).trim();
+    let body;
+    if (stack) {
+      // add full stack trace if one exists, otherwise convert to string
+      body = ( err?.stack ?? `${err}` ).replace(/^/gm, ' '.repeat(depth)).trim();
 
-    // replace error name with class constructor as necessary
-    if (stack.startsWith('Error: ') && err.constructor.name != 'Error') {
-      stack = err.constructor.name + stack.substring(5);
+      // replace error name with class constructor as necessary
+      if (body.startsWith('Error: ') && err.constructor.name != 'Error') {
+        body = err.constructor.name + body.substring(5);
+      }
+    } else {
+      body = `${err}`;
     }
-    collapsed += stack;
+    collapsed += body;
 
     const props = Object.getOwnPropertyNames(err);
 
@@ -39,7 +52,7 @@ module.exports = function stringify (err, depth = 0) {
 
         // if another error object, stringify it too
         if (err[property] instanceof Error) {
-          collapsed += stringify(err[property], depth + 2);
+          collapsed += stringify(err[property], { depth: depth + 2, stack });
         }
         // otherwise stringify as JSON
         else {
@@ -57,4 +70,6 @@ module.exports = function stringify (err, depth = 0) {
 
   return collapsed;
 }
+stringify.version = packageJson.version;
 
+module.exports = stringify;
