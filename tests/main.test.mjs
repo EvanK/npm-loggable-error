@@ -3,7 +3,7 @@ const { assert } = chai;
 
 import stringify from '../src/import.mjs';
 
-import packageJson from '../package.json' assert { type: 'json' };
+import packageJson from '../package.json' with { type: 'json' };
 
 describe('stringify', function() {
 
