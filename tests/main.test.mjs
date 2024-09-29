@@ -139,7 +139,7 @@ describe('stringify', function() {
 
     assert.isTrue(
       result.startsWith(
-        `Error: simple
+        `          Error: simple
               at Context.<anonymous> (`
       ),
       'startsWith failed'

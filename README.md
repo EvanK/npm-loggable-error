@@ -32,3 +32,26 @@ Error: testing one two three
     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
     at node:internal/main/run_main_module:17:47
 ```
+
+## Stringification Options
+
+Our exported function accepts a second `options` argument, in case you want to control whether stack traces are displayed or the amount of starting indentation:
+
+```js
+stringify(e, { stack: false });
+// => 'Error: testing one two three'
+
+stringify(e, { depth: 8 });
+/* =>
+'        Error: testing one two three\n' +
+'            at Object.<anonymous> (/home/jdoe/test.js:7:9)\n' +
+'            at Module._compile (node:internal/modules/cjs/loader:1546:14)\n' +
+'            at Module._extensions..js (node:internal/modules/cjs/loader:1691:10)\n' +
+'            at Module.load (node:internal/modules/cjs/loader:1317:32)\n' +
+'            at Module._load (node:internal/modules/cjs/loader:1127:12)\n' +
+'            at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n' +
+'            at wrapModuleLoad (node:internal/modules/cjs/loader:217:24)\n' +
+'            at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:166:5)\n' +
+'            at node:internal/main/run_main_module:30:49'
+*/
+```

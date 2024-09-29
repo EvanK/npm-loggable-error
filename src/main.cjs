@@ -15,7 +15,7 @@ function stringify(err, options = {}) {
   const depth = options.hasOwnProperty('depth') ? parseInt(options.depth, 10) : 0;
   const stack = options.hasOwnProperty('stack') ? (!!options.stack) : true;
 
-  let collapsed = '';
+  let collapsed = ' '.repeat(depth);
   if (err instanceof Error) {
     let body;
     if (stack) {
@@ -52,7 +52,7 @@ function stringify(err, options = {}) {
 
         // if another error object, stringify it too
         if (err[property] instanceof Error) {
-          collapsed += stringify(err[property], { depth: depth + 2, stack });
+          collapsed += stringify(err[property], { depth: depth + 2, stack }).trimStart();
         }
         // otherwise stringify as JSON
         else {
