@@ -1,6 +1,15 @@
 # loggable-error
 
-![ci status](https://github.com/EvanK/npm-loggable-error/actions/workflows/ci.yml/badge.svg)
+[
+  ![ci status](https://github.com/EvanK/npm-loggable-error/actions/workflows/ci.yml/badge.svg)
+](https://github.com/EvanK/loggable-error/actions/workflows/ci.yml)
+[
+  ![node.js supported as of v20](https://img.shields.io/badge/Node.js-v20-yellow)
+](https://nodejs.org/docs/latest-v20.x/api/)
+
+[
+  ![npm](https://nodei.co/npm/npm-loggable-error.png)
+](https://www.npmjs.com/package/npm-loggable-error)
 
 In those times when you need to log an error to somewhere other than standard output, this simple module stringifies Error objects in a format akin to `console.log`:
 
