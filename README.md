@@ -9,7 +9,7 @@
 
 [
   ![npm](https://nodei.co/npm/loggable-error.png)
-](https://www.npmjs.com/package/npm-loggable-error)
+](https://www.npmjs.com/package/loggable-error)
 
 In those times when you need to log an error to somewhere other than standard output, this simple module stringifies Error objects in a format akin to `console.log`:
 
