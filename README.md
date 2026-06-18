@@ -4,8 +4,8 @@
   ![ci status](https://github.com/EvanK/npm-loggable-error/actions/workflows/ci.yml/badge.svg)
 ](https://github.com/EvanK/loggable-error/actions/workflows/ci.yml)
 [
-  ![node.js supported as of v20](https://img.shields.io/badge/Node.js-v20-yellow)
-](https://nodejs.org/docs/latest-v20.x/api/)
+  ![Node.js supported and tested on v20 through v26](https://img.shields.io/badge/Node.js-v20%20--%20v26-seagreen?logo=nodedotjs "Node.js supported and tested on v20 through v26")
+](https://nodejs.org/en/about/previous-releases)
 
 [
   ![npm](https://nodei.co/npm/loggable-error.png)
